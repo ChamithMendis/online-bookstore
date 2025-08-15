@@ -1,0 +1,40 @@
+<section class="featured-books">
+  <div class="container">
+    <h2 class="section-title">Featured Books</h2>
+    <p class="section-subtitle">
+      Discover our handpicked selection of must-read books across all genres
+    </p>
+
+    <div class="books-grid">
+      <div *ngFor="let book of featuredBooks" class="book-card card">
+        <div class="book-image">
+          <img [src]="book.image" [alt]="book.title" />
+          <div class="book-overlay">
+            <button class="btn btn-primary">View Details</button>
+          </div>
+        </div>
+        <div class="book-info">
+          <span class="book-category">{{ book.category }}</span>
+          <h3 class="book-title">{{ book.title }}</h3>
+          <p class="book-author">by {{ book.author }}</p>
+          <div class="book-rating">
+            <div class="stars">
+              <span *ngFor="let star of getStars(book.rating)" class="star">⭐</span>
+            </div>
+            <span class="rating-text">({{ book.rating }})</span>
+          </div>
+          <div class="book-price">
+            <span class="current-price">\${{ book.price }}</span>
+            <span *ngIf="book.originalPrice" class="original-price"
+              >\${{ book.originalPrice }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-all">
+      <button class="btn btn-outline btn-large">View All Books</button>
+    </div>
+  </div>
+</section>

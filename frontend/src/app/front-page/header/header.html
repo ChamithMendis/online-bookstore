@@ -1,1 +1,28 @@
-<p>header works!</p>
+<header class="header">
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <h1 class="logo">📚 NinjaBooks</h1>
+      </div>
+
+      <ul class="nav-menu" [class.nav-menu-active]="isMenuOpen">
+        <li><a href="#" class="nav-link">Home</a></li>
+        <li><a href="#" class="nav-link">Categories</a></li>
+        <li><a href="#" class="nav-link">Featured</a></li>
+        <li><a href="#" class="nav-link">About</a></li>
+        <li><a href="#" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions" [class.nav-actions-active]="isMenuOpen">
+        <button class="btn btn-secondary">Login</button>
+        <button class="btn btn-primary">Register</button>
+      </div>
+
+      <div class="hamburger" [class.hamburger-active]="isMenuOpen" (click)="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </div>
+</header>

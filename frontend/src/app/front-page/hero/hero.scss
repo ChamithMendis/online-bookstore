@@ -1,0 +1,157 @@
+.hero {
+    background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+    padding: 4rem 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--naruto-navy);
+    margin-bottom: 1.5rem;
+}
+
+.highlight {
+    color: var(--naruto-orange);
+    position: relative;
+}
+
+.highlight::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, var(--naruto-orange), var(--naruto-light-orange));
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    color: var(--gray);
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--naruto-orange);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--gray);
+    font-weight: 500;
+}
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-stack {
+    position: relative;
+    width: 200px;
+    height: 300px;
+}
+
+.book {
+    position: absolute;
+    width: 140px;
+    height: 200px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+}
+
+.book-1 {
+    background: linear-gradient(135deg, var(--naruto-orange), var(--naruto-dark-orange));
+    transform: rotate(-15deg);
+    z-index: 1;
+}
+
+.book-2 {
+    background: linear-gradient(135deg, var(--naruto-blue), #357abd);
+    transform: rotate(5deg) translate(30px, 20px);
+    z-index: 2;
+}
+
+.book-3 {
+    background: linear-gradient(135deg, var(--naruto-navy), #1a252f);
+    transform: rotate(20deg) translate(60px, 40px);
+    z-index: 3;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 2rem 0;
+        min-height: 60vh;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-description {
+        font-size: 1.125rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .book-stack {
+        width: 160px;
+        height: 240px;
+    }
+
+    .book {
+        width: 120px;
+        height: 160px;
+    }
+}

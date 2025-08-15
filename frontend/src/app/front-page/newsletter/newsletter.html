@@ -1,0 +1,25 @@
+<section class="newsletter">
+  <div class="container">
+    <div class="newsletter-content">
+      <div class="newsletter-text">
+        <h2 class="newsletter-title">Stay Updated with New Releases</h2>
+        <p class="newsletter-description">
+          Get notified about the latest books, exclusive deals, and reading recommendations
+          delivered straight to your inbox.
+        </p>
+      </div>
+      <div class="newsletter-form">
+        <div class="form-group">
+          <input
+            type="email"
+            [(ngModel)]="email"
+            placeholder="Enter your email address"
+            class="email-input"
+          />
+          <button class="btn btn-primary" (click)="subscribe()">Subscribe</button>
+        </div>
+        <p class="form-note">No spam, unsubscribe anytime. We respect your privacy.</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+<section class="categories">
+  <div class="container">
+    <h2 class="section-title">Browse by Category</h2>
+    <p class="section-subtitle">Find your perfect read in our carefully curated book collections</p>
+
+    <div class="categories-grid">
+      <div
+        *ngFor="let category of categories"
+        class="category-card card"
+        [style.border-top]="'4px solid ' + category.color"
+      >
+        <div class="category-icon" [style.color]="category.color">{{ category.icon }}</div>
+        <h3 class="category-name">{{ category.name }}</h3>
+        <p class="category-description">{{ category.description }}</p>
+        <div class="category-count">{{ category.bookCount }}+ books available</div>
+        <button class="btn btn-secondary">Explore Category</button>
+      </div>
+    </div>
+  </div>
+</section>
