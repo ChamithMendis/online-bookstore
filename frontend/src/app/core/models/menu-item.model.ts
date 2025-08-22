@@ -1,6 +1,6 @@
 interface Book {
   id: number;
   title: string;
-  link: string;
+  link?: string;
   other?: string;
 }
