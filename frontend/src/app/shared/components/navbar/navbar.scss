@@ -1,0 +1,119 @@
+.header {
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 70px;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: var(--light-gray);
+}
+
+.hamburger-line {
+    width: 24px;
+    height: 3px;
+    background: var(--primary-orange);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.logo h1 {
+    color: var(--primary-orange);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.header-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--primary-dark);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--primary-orange);
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-orange);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.cart-btn {
+    background: var(--primary-orange);
+    color: var(--white);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.cart-btn:hover {
+    background: var(--secondary-orange);
+    transform: scale(1.05);
+}
+
+.cart-count {
+    background: var(--primary-dark);
+    color: var(--white);
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.8rem;
+    margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+    .header-nav {
+        display: none;
+    }
+
+    .logo h1 {
+        font-size: 1.4rem;
+    }
+}

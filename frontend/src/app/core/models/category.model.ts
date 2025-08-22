@@ -1,8 +1,8 @@
 interface Category {
-  id: number;
+  id?: number;
   name: string;
-  description: string;
+  description?: string;
   icon: string;
   bookCount: number;
-  color: string;
+  color?: string;
 }

@@ -1,0 +1,59 @@
+<aside class="sidebar" [class.open]="isOpen">
+  <div class="sidebar-overlay" (click)="closeSidebar()"></div>
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <h3>📚 Categories</h3>
+      <button class="close-btn" (click)="closeSidebar()">✕</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-text">All Books</span>
+        <span class="nav-count">{{ totalBooks }}</span>
+      </a>
+
+      <div class="nav-section">
+        <h4 class="section-title">Manga & Comics</h4>
+        <a
+          href="#"
+          class="nav-item"
+          *ngFor="let category of mangaCategories"
+          (click)="selectCategory(category.name)"
+        >
+          <span class="nav-icon">{{ category.icon }}</span>
+          <span class="nav-text">{{ category.name }}</span>
+          <span class="nav-count">{{ category.bookCount }}</span>
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <h4 class="section-title">Light Novels</h4>
+        <a
+          href="#"
+          class="nav-item"
+          *ngFor="let category of novelCategories"
+          (click)="selectCategory(category.name)"
+        >
+          <span class="nav-icon">{{ category.icon }}</span>
+          <span class="nav-text">{{ category.name }}</span>
+          <span class="nav-count">{{ category.bookCount }}</span>
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <h4 class="section-title">Merchandise</h4>
+        <a
+          href="#"
+          class="nav-item"
+          *ngFor="let category of merchCategories"
+          (click)="selectCategory(category.name)"
+        >
+          <span class="nav-icon">{{ category.icon }}</span>
+          <span class="nav-text">{{ category.name }}</span>
+          <span class="nav-count">{{ category.bookCount }}</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+</aside>
