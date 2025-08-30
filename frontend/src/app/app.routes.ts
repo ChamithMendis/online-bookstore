@@ -4,14 +4,14 @@ import { MainLayout } from './layout/main-layout/main-layout';
 
 export const routes: Routes = [
   // [TODO: To be added after auth implementation completes]
-  // {
-  //   path: '',
-  //   component: FrontPage,
-  // },
-  // {
-  //   path: 'authentication',
-  //   loadChildren: () => import('./features/auth/auth.routes').then((m) => m.AUTH_ROUTES),
-  // },
+  {
+    path: '',
+    component: FrontPage,
+  },
+  {
+    path: 'authentication',
+    loadChildren: () => import('./features/auth/auth.routes').then((m) => m.AUTH_ROUTES),
+  },
   {
     path: '',
     // component: MainLayout,
