@@ -14,8 +14,8 @@
       </ul>
 
       <div class="nav-actions" [class.nav-actions-active]="isMenuOpen">
-        <button class="btn btn-secondary">Login</button>
-        <button class="btn btn-primary">Register</button>
+        <button class="btn btn-secondary" [routerLink]="'/authentication/login'">Login</button>
+        <button class="btn btn-primary" [routerLink]="'/authentication/register'">Register</button>
       </div>
 
       <div class="hamburger" [class.hamburger-active]="isMenuOpen" (click)="toggleMenu()">

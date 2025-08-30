@@ -1,1 +1,77 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="background-elements">
+    <div class="leaf-symbol leaf-1">🍃</div>
+    <div class="leaf-symbol leaf-2">🍃</div>
+    <div class="leaf-symbol leaf-3">🍃</div>
+  </div>
+
+  <div class="login-card">
+    <div class="header">
+      <div class="logo-section">
+        <div class="ninja-symbol">忍</div>
+        <h1 class="title">Hidden Leaf Village</h1>
+        <p class="subtitle">Ninja Login Portal</p>
+      </div>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
+      <div class="input-group">
+        <label for="username" class="input-label">Ninja Username</label>
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            [(ngModel)]="username"
+            (input)="clearError('username')"
+            [class.error]="errors.username"
+            class="form-input"
+            placeholder="Enter your ninja name"
+            autocomplete="username"
+          />
+          <div class="input-icon">👤</div>
+        </div>
+        <div class="error-message" *ngIf="errors.username">
+          {{ errors.username }}
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="password" class="input-label">Secret Jutsu</label>
+        <div class="input-wrapper">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            [(ngModel)]="password"
+            (input)="clearError('password')"
+            [class.error]="errors.password"
+            class="form-input"
+            placeholder="Enter your secret technique"
+            autocomplete="current-password"
+          />
+          <div class="input-icon">🗝️</div>
+        </div>
+        <div class="error-message" *ngIf="errors.password">
+          {{ errors.password }}
+        </div>
+      </div>
+
+      <button type="submit" class="login-button" [class.loading]="isLoading" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Enter the Village</span>
+        <span *ngIf="isLoading" class="loading-text">
+          <div class="spinner"></div>
+          Authenticating...
+        </span>
+      </button>
+    </form>
+
+    <div class="footer">
+      <p class="footer-text">
+        "Those who break the rules are scum, but those who abandon their friends are worse than
+        scum."
+      </p>
+      <p class="quote-author">- Kakashi Hatake</p>
+    </div>
+  </div>
+</div>
