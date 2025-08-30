@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../shared/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -7,5 +8,9 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  register() {}
+  register(regFormDetails: User) {
+    const requestUrl = environment.baseUrl + '/register';
+
+    return this.http.post(requestUrl, regFormDetails);
+  }
 }

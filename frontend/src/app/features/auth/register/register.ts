@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -32,7 +33,11 @@ export class Register {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -91,26 +96,32 @@ export class Register {
     // }
 
     // If no errors, proceed with registration
-    if (Object.keys(this.errors).length === 0) {
+    if (!this.registerForm.invalid) {
       this.isLoading = true;
 
-      if (this.registerForm.invalid) {
-        return;
-      }
-
-      // Simulate registration process
-      setTimeout(() => {
-        this.isLoading = false;
-        console.log('Registration successful!', {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          email: this.email,
-          username: this.username,
-        });
+      try {
         // Registration service call
+        const user: User = this.registerForm.getRawValue();
 
-        this.authService.register();
-      }, 2500);
+        this.authService.register(user).subscribe({
+          next: (response) => {
+            setTimeout(() => {
+              this.isLoading = false;
+              console.log('Registration successful!');
+              this.router.navigate(['/authentication/login'], {
+                queryParams: { registered: 'true' },
+              });
+            }, 1000);
+          },
+          error: (error) => {
+            this.isLoading = false;
+            console.log('Registration failed!');
+          },
+        });
+      } catch (error) {
+        this.isLoading = false;
+        console.log('Registration failed!');
+      }
     }
   }
 
