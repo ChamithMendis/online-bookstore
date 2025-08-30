@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="register-form">
+    <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="register-form">
       <!-- First Name and Last Name Row -->
       <div class="name-row">
         <div class="input-group half-width">
@@ -25,7 +25,7 @@
               type="text"
               id="firstName"
               name="firstName"
-              [(ngModel)]="firstName"
+              formControlName="firstName"
               (input)="clearError('firstName')"
               [class.error]="errors.firstName"
               class="form-input"
@@ -34,9 +34,18 @@
             />
             <div class="input-icon">👤</div>
           </div>
-          <div class="error-message" *ngIf="errors.firstName">
-            {{ errors.firstName }}
+          <div
+            class="error-message"
+            *ngIf="
+              (formControl['firstName'].touched || submitted) &&
+              formControl['firstName'].errors &&
+              formControl['firstName'].errors['required']
+            "
+          >
+            <!-- {{ errors.firstName }} -->
+            First name is required
           </div>
+          <!-- Set the error messages properly -->
         </div>
 
         <div class="input-group half-width">
@@ -46,7 +55,7 @@
               type="text"
               id="lastName"
               name="lastName"
-              [(ngModel)]="lastName"
+              formControlName="lastName"
               (input)="clearError('lastName')"
               [class.error]="errors.lastName"
               class="form-input"
@@ -55,9 +64,18 @@
             />
             <div class="input-icon">👥</div>
           </div>
-          <div class="error-message" *ngIf="errors.lastName">
-            {{ errors.lastName }}
+          <div
+            class="error-message"
+            *ngIf="
+              (formControl['lastName'].touched || submitted) &&
+              formControl['lastName'].errors &&
+              formControl['lastName'].errors['required']
+            "
+          >
+            <!-- {{ errors.lastName }} -->
+            Last name is required
           </div>
+          <!-- Set the error messages properly -->
         </div>
       </div>
 
@@ -69,7 +87,7 @@
             type="email"
             id="email"
             name="email"
-            [(ngModel)]="email"
+            formControlName="email"
             (input)="clearError('email')"
             [class.error]="errors.email"
             class="form-input"
@@ -78,8 +96,27 @@
           />
           <div class="input-icon">📧</div>
         </div>
-        <div class="error-message" *ngIf="errors.email">
-          {{ errors.email }}
+        <div
+          class="error-message"
+          *ngIf="
+            (formControl['email'].touched || submitted) &&
+            formControl['email'].errors &&
+            formControl['email'].errors['required']
+          "
+        >
+          <!-- {{ errors.email }} -->
+          Email is required
+        </div>
+        <div
+          class="error-message"
+          *ngIf="
+            (formControl['email'].touched || submitted) &&
+            formControl['email'].errors &&
+            formControl['email'].errors['email']
+          "
+        >
+          <!-- {{ errors.email }} -->
+          Invalid email format
         </div>
       </div>
 
@@ -91,7 +128,7 @@
             type="text"
             id="username"
             name="username"
-            [(ngModel)]="username"
+            formControlName="username"
             (input)="clearError('username')"
             [class.error]="errors.username"
             class="form-input"
@@ -100,8 +137,16 @@
           />
           <div class="input-icon">🥷</div>
         </div>
-        <div class="error-message" *ngIf="errors.username">
-          {{ errors.username }}
+        <div
+          class="error-message"
+          *ngIf="
+            (formControl['username'].touched || submitted) &&
+            formControl['username'].errors &&
+            formControl['username'].errors['required']
+          "
+        >
+          <!-- {{ errors.username }} -->
+          Username is required
         </div>
       </div>
 
@@ -113,7 +158,7 @@
             type="password"
             id="password"
             name="password"
-            [(ngModel)]="password"
+            formControlName="password"
             (input)="clearError('password')"
             [class.error]="errors.password"
             class="form-input"
@@ -122,8 +167,16 @@
           />
           <div class="input-icon">🗝️</div>
         </div>
-        <div class="error-message" *ngIf="errors.password">
-          {{ errors.password }}
+        <div
+          class="error-message"
+          *ngIf="
+            (formControl['password'].touched || submitted) &&
+            formControl['password'].errors &&
+            formControl['password'].errors['required']
+          "
+        >
+          <!-- {{ errors.password }} -->
+          Password is required
         </div>
       </div>
 

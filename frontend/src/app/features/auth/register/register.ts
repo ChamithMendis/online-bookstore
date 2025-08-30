@@ -1,10 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
@@ -22,52 +29,74 @@ export class Register {
     username?: string;
     password?: string;
   } = {};
+  registerForm: FormGroup;
+  submitted = false;
+
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.email, Validators.required]],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
+  }
 
   onSubmit() {
     this.errors = {};
+    this.submitted = true;
 
     // Validate first name
-    if (!this.firstName.trim()) {
+    if (this.registerForm.get('firstName')?.errors) {
       this.errors.firstName = 'First name is required';
-    } else if (this.firstName.length < 2) {
-      this.errors.firstName = 'First name must be at least 2 characters';
     }
+    // else if (this.firstName.length < 2) {
+    //   this.errors.firstName = 'First name must be at least 2 characters';
+    // }
 
     // Validate last name
-    if (!this.lastName.trim()) {
+    if (this.registerForm.get('lastName')?.errors) {
       this.errors.lastName = 'Last name is required';
-    } else if (this.lastName.length < 2) {
-      this.errors.lastName = 'Last name must be at least 2 characters';
     }
+    // else if (this.lastName.length < 2) {
+    //   this.errors.lastName = 'Last name must be at least 2 characters';
+    // }
 
     // Validate email
-    if (!this.email.trim()) {
+    if (this.registerForm.get('email')?.errors) {
       this.errors.email = 'Email is required';
-    } else if (!this.isValidEmail(this.email)) {
-      this.errors.email = 'Please enter a valid email address';
     }
+    // else if (!this.isValidEmail(this.email)) {
+    //   this.errors.email = 'Please enter a valid email address';
+    // }
 
     // Validate username
-    if (!this.username.trim()) {
+    if (this.registerForm.get('username')?.errors) {
       this.errors.username = 'Username is required';
-    } else if (this.username.length < 3) {
-      this.errors.username = 'Username must be at least 3 characters';
-    } else if (!/^[a-zA-Z0-9_]+$/.test(this.username)) {
-      this.errors.username = 'Username can only contain letters, numbers, and underscores';
     }
+    // else if (this.username.length < 3) {
+    //   this.errors.username = 'Username must be at least 3 characters';
+    // } else if (!/^[a-zA-Z0-9_]+$/.test(this.username)) {
+    //   this.errors.username = 'Username can only contain letters, numbers, and underscores';
+    // }
 
     // Validate password
-    if (!this.password) {
+    if (this.registerForm.get('password')?.errors) {
       this.errors.password = 'Password is required';
-    } else if (this.password.length < 8) {
-      this.errors.password = 'Password must be at least 8 characters';
-    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(this.password)) {
-      this.errors.password = 'Password must contain uppercase, lowercase, and number';
     }
+    // else if (this.password.length < 8) {
+    //   this.errors.password = 'Password must be at least 8 characters';
+    // } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(this.password)) {
+    //   this.errors.password = 'Password must contain uppercase, lowercase, and number';
+    // }
 
     // If no errors, proceed with registration
     if (Object.keys(this.errors).length === 0) {
       this.isLoading = true;
+
+      if (this.registerForm.invalid) {
+        return;
+      }
 
       // Simulate registration process
       setTimeout(() => {
@@ -78,9 +107,15 @@ export class Register {
           email: this.email,
           username: this.username,
         });
-        // Here you would typically call your registration service
+        // Registration service call
+
+        this.authService.register();
       }, 2500);
     }
+  }
+
+  get formControl() {
+    return this.registerForm?.controls;
   }
 
   clearError(field: string) {
