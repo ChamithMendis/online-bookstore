@@ -1,0 +1,10 @@
+# General
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+.idea/
+*.iml
+.vscode/
+*.env
