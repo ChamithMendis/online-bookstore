@@ -10,7 +10,7 @@
     <groupId>org.online-bookstore-backend</groupId>
     <artifactId>CommonModule</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Common</name>
+    <name>CommonModule</name>
     <description>Shared DTOs and Utilities for Bookstore</description>
     <url/>
     <licenses>

@@ -10,7 +10,7 @@
     <groupId>org.online-bookstore-backend</groupId>
     <artifactId>AuthModule</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Auth</name>
+    <name>AuthModule</name>
     <description>Authentication and Authorization Module</description>
     <url/>
     <licenses>

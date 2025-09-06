@@ -10,7 +10,7 @@
 	<groupId>org.online-bookstore-backend</groupId>
 	<artifactId>UsersModule</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Users</name>
+	<name>UsersModule</name>
     <description>User Management Module</description>
 	<url/>
 	<licenses>
@@ -29,11 +29,6 @@
 		<java.version>24</java.version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
