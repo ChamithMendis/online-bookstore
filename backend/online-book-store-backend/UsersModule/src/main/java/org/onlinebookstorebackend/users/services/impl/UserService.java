@@ -2,6 +2,7 @@ package org.onlinebookstorebackend.users.services.impl;
 
 import org.onlinebookstorebackend.common.exceptions.AppException;
 import org.onlinebookstorebackend.users.dtos.CredentialsDto;
+import org.onlinebookstorebackend.users.dtos.SignUpDto;
 import org.onlinebookstorebackend.users.dtos.UserDto;
 import org.onlinebookstorebackend.users.entities.User;
 import org.onlinebookstorebackend.users.mappers.UserMapper;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.nio.CharBuffer;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserServiceI {
@@ -27,6 +29,22 @@ public class UserService implements UserServiceI {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userMapper = userMapper;
+    }
+
+    @Override
+    public UserDto register(SignUpDto signUpDto) {
+        Optional<User> oUser = userRepository.findByUsername(signUpDto.username());
+
+        if (oUser.isPresent()) {
+            throw new AppException("Username already exists", HttpStatus.BAD_REQUEST);
+        }
+
+        User user = userMapper.signUpToUser(signUpDto);
+
+        user.setPassword(passwordEncoder.encode(CharBuffer.wrap(signUpDto.password())));
+        User savedUser = userRepository.save(user);
+
+        return userMapper.userToUserDto(savedUser);
     }
 
     public UserDto login(CredentialsDto credentialsDto) {

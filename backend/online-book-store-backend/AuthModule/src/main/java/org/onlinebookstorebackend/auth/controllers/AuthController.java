@@ -22,9 +22,8 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<UserDto> register(@RequestBody SignUpDto signUpDto) {
-        System.out.println("Rest call success");
-        UserDto user = new UserDto();
-        return ResponseEntity.created(URI.create("/register/" + user.getId())).body(user);
+        UserDto user = userServiceI.register(signUpDto);
+        return ResponseEntity.created(URI.create("/users/" + user.getId())).body(user);
     }
 
     @PostMapping("/login")
