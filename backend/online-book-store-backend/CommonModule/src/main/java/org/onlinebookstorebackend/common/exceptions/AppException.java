@@ -1,4 +1,4 @@
-package com.bit.backend.exceptions;
+package org.onlinebookstorebackend.common.exceptions;
 
 import org.springframework.http.HttpStatus;
 

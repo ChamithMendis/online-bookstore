@@ -1,4 +1,4 @@
-package com.bit.backend.config;
+package org.onlinebookstorebackend.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

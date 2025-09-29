@@ -1,4 +1,4 @@
-package org.onlinebookstorebackend.auth.dtos;
+package org.onlinebookstorebackend.users.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

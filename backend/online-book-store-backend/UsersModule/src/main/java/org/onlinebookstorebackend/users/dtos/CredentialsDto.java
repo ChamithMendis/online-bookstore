@@ -1,4 +1,4 @@
-package org.onlinebookstorebackend.auth.dtos;
+package org.onlinebookstorebackend.users.dtos;
 
 public record CredentialsDto(String login, char[] password) {
 }

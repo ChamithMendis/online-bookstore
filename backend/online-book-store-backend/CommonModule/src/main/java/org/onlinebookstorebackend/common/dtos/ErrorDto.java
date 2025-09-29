@@ -1,4 +1,4 @@
 package org.onlinebookstorebackend.common.dtos;
 
-public class ErrorDto {
+public record ErrorDto (String message) {
 }

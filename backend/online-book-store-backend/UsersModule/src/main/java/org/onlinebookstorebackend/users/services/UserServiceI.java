@@ -1,4 +1,8 @@
-package org.onlinebookstorebackend.users.services.impl;
+package org.onlinebookstorebackend.users.services;
 
-public class UserServiceI {
+import org.onlinebookstorebackend.users.dtos.CredentialsDto;
+import org.onlinebookstorebackend.users.dtos.UserDto;
+
+public interface UserServiceI {
+    UserDto login(CredentialsDto credentialsDto);
 }
