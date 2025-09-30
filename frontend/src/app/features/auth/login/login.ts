@@ -70,6 +70,7 @@ export class Login {
           next: (response: any) => {
             this.isLoading = false;
             console.log('Login successful!');
+            this.authService.setAuthToken(response.token);
             this.router.navigate(['/welcome-page'], {
               queryParams: { loggedIn: 'true' },
             });
