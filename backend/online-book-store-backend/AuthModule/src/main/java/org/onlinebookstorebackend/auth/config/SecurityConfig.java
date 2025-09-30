@@ -1,4 +1,4 @@
-package org.onlinebookstorebackend.common.config;
+package org.onlinebookstorebackend.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,20 +14,20 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @EnableWebSecurity // saying spring to use this configuration instead of default security configs
 public class SecurityConfig {
 
-//    private final UserAuthProvider userAuthProvider;
-//
-//    public SecurityConfig(UserAuthProvider userAuthProvider) {
-//        this.userAuthProvider = userAuthProvider;
-//    }
+    private final UserAuthProvider userAuthProvider;
+
+    public SecurityConfig(UserAuthProvider userAuthProvider) {
+        this.userAuthProvider = userAuthProvider;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception { // can give any method name
         http.csrf(AbstractHttpConfigurer::disable) // method referencing, disabling csrf
-//                .addFilterBefore(new JwtAuthFilter(userAuthProvider), BasicAuthenticationFilter.class)
+                .addFilterBefore(new JwtAuthFilter(userAuthProvider), BasicAuthenticationFilter.class)
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // to handle csrf so you don't have to worry about session id
                 .authorizeHttpRequests((request) ->
                         request.requestMatchers(HttpMethod.POST, "/login", "/register","/forgot-password").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/customer-task-by-uid**").permitAll()
+//                                .requestMatchers(HttpMethod.GET, "/customer-task-by-uid**").permitAll()
                                 .anyRequest().authenticated()
                 );
         return http.build();

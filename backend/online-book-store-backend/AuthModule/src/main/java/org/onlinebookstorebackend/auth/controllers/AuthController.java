@@ -1,5 +1,6 @@
 package org.onlinebookstorebackend.auth.controllers;
 
+import org.onlinebookstorebackend.auth.config.UserAuthProvider;
 import org.onlinebookstorebackend.users.dtos.CredentialsDto;
 import org.onlinebookstorebackend.users.dtos.SignUpDto;
 import org.onlinebookstorebackend.users.dtos.UserDto;
@@ -15,9 +16,11 @@ import java.net.URI;
 public class AuthController {
 
     private final UserServiceI userServiceI;
+    private final UserAuthProvider userAuthProvider;
 
-    public AuthController(UserServiceI userServiceI) {
+    public AuthController(UserServiceI userServiceI, UserAuthProvider userAuthProvider) {
         this.userServiceI = userServiceI;
+        this.userAuthProvider = userAuthProvider;
     }
 
     @PostMapping("/register")
@@ -29,8 +32,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody CredentialsDto credentialsDto) throws Exception {
         UserDto user = userServiceI.login(credentialsDto);
-//        user.setToken(userAuthProvider.createToken(user));
-//        return ResponseEntity.ok(user);
-        return null;
+        user.setToken(userAuthProvider.createToken(user));
+        return ResponseEntity.ok(user);
     }
 }
