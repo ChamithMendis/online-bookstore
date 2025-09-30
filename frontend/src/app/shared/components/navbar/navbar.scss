@@ -108,6 +108,10 @@
     margin-left: 8px;
 }
 
+.logo {
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .header-nav {
         display: none;
