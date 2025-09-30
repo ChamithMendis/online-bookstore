@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router, RouterModule } from '@angular/router';
+import { MessageService } from '../../../shared/services/message.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class Login {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
     this.loginForm = this.formBuilder.group({
       login: ['', [Validators.required]],
@@ -65,22 +67,30 @@ export class Login {
     const login: Login = this.loginForm.getRawValue();
     if (!this.loginForm.invalid) {
       this.isLoading = true;
-      setTimeout(() => {
+
+      try {
         this.authService.login(login).subscribe({
           next: (response: any) => {
-            this.isLoading = false;
-            console.log('Login successful!');
-            this.authService.setAuthToken(response.token);
-            this.router.navigate(['/welcome-page'], {
-              queryParams: { loggedIn: 'true' },
-            });
+            this.messageService.showSuccess('Successfully Logged in!');
+            setTimeout(() => {
+              this.isLoading = false;
+              console.log('Login successful!');
+              this.authService.setAuthToken(response.token);
+              this.router.navigate(['/welcome-page'], {
+                queryParams: { loggedIn: 'true' },
+              });
+            }, 2000);
           },
           error: (error: any) => {
             this.isLoading = false;
             console.log('Login failed!', error);
+            this.messageService.showError('Loggin in failed!. Please try again');
           },
         });
-      }, 2000);
+      } catch (error) {
+        this.isLoading = false;
+        this.messageService.showError('Loggin in failed!. Please try again');
+      }
     }
   }
 
