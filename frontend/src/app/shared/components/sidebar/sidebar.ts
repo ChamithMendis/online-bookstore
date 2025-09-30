@@ -14,6 +14,7 @@ export class Sidebar {
   @Output() categorySelect = new EventEmitter<string>();
 
   totalBooks = 156;
+  activeItem: string = 'welcome';
 
   mangaCategories: Category[] = [
     { name: 'Naruto', icon: '🍃', bookCount: 24 },
@@ -42,5 +43,9 @@ export class Sidebar {
 
   selectCategory(category: string) {
     this.categorySelect.emit(category);
+  }
+
+  onSidebarItemClicked(item: string) {
+    this.activeItem = item;
   }
 }

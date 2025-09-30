@@ -7,12 +7,26 @@
     </div>
 
     <nav class="sidebar-nav">
-      <a [routerLink]="'/'" class="nav-item active">
+      <a
+        [routerLink]="'/welcome-page'"
+        [ngClass]="{
+          'nav-item': true,
+          active: activeItem === 'welcome'
+        }"
+        (click)="onSidebarItemClicked('welcome')"
+      >
         <span class="nav-icon">🙏</span>
         <span class="nav-text">Welcome</span>
       </a>
 
-      <a [routerLink]="'/all-books'" class="nav-item">
+      <a
+        [routerLink]="'/all-books'"
+        [ngClass]="{
+          'nav-item': true,
+          active: activeItem === 'allbooks'
+        }"
+        (click)="onSidebarItemClicked('allbooks')"
+      >
         <span class="nav-icon">🏠</span>
         <span class="nav-text">All Books</span>
         <span class="nav-count">{{ totalBooks }}</span>

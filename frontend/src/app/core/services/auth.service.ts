@@ -13,4 +13,10 @@ export class AuthService {
 
     return this.http.post(requestUrl, regFormDetails);
   }
+
+  login(loginFormDetails: Login) {
+    const requestUrl = environment.baseUrl + '/login';
+
+    return this.http.post(requestUrl, loginFormDetails);
+  }
 }
