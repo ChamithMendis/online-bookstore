@@ -38,56 +38,55 @@ The Angular project is organized to separate core services, shared components, f
 
 src/
 ├── app/
-│ ├── core/ # Core services, models, guards, interceptors
-│ │ ├── auth.service.ts
-│ │ ├── auth.guard.ts
-│ │ └── models/
-│ │ ├── user.model.ts
-│ │ └── book.model.ts
-│ │
-│ ├── shared/ # Reusable components, pipes, directives
-│ │ ├── components/
-│ │ │ ├── navbar/
-│ │ │ │ └── navbar.component.ts
-│ │ │ └── sidebar/
-│ │ │ └── sidebar.component.ts
-│ │ ├── pipes/
-│ │ └── directives/
-│ │
-│ ├── features/ # Feature areas (lazy-loaded)
-│ │ ├── auth/ # Login/Register
-│ │ │ ├── login/
-│ │ │ │ └── login.component.ts
-│ │ │ ├── register/
-│ │ │ │ └── register.component.ts
-│ │ │ └── auth.routes.ts
-│ │ │
-│ │ ├── welcome-page / # landing page after logged in
-│ │ │ └── welcome-page.component.ts
-│ │ └── all-books/ # View/Read books
-│ │ └── all-books.component.ts
-│ ├── layout/ # Layout after login
-│ │ ├── main-layout.component.ts
-│ │ └── main-layout.routes.ts
-│ │
-│ ├── app.routes.ts # Main routes config
-│ └── app.component.ts # Root component
+│   ├── core/          # Core services, models, guards, interceptors
+│   │   ├── auth.service.ts
+│   │   ├── auth.guard.ts
+│   │   └── models/
+│   │       ├── user.model.ts
+│   │       └── book.model.ts
+│   │
+│   ├── shared/        # Reusable components, pipes, directives
+│   │   ├── components/
+│   │   │   ├── navbar/navbar.component.ts
+│   │   │   └── sidebar/sidebar.component.ts
+│   │   ├── pipes/
+│   │   └── directives/
+│   │
+│   ├── features/      # Feature areas (lazy-loaded)
+│   │   ├── auth/          # Login/Register
+│   │   │   ├── login/login.component.ts
+│   │   │   ├── register/register.component.ts
+│   │   │   └── auth.routes.ts
+│   │   │
+│   │   ├── welcome-page/  # Landing page after login
+│   │   │   └── welcome-page.component.ts
+│   │   │
+│   │   └── all-books/     # View/Read books
+│   │       └── all-books.component.ts
+│   │
+│   ├── layout/        # Layout after login
+│   │   ├── main-layout.component.ts
+│   │   └── main-layout.routes.ts
+│   │
+│   ├── app.routes.ts  # Main routes config
+│   └── app.component.ts # Root component
 │
 ├── assets/
-│ └── images/
+│   └── images/
 │
 ├── environments/
-│ ├── environment.ts
-│ └── environment.prod.ts
+│   ├── environment.ts
+│   └── environment.prod.ts
 │
-└── main.ts # Bootstrap
+└── main.ts           # Bootstrap
+
 
 # SpringBoot Project Structure
 
-src/main/java/com/bookstore
-├── AuthModule/ → Authentication module (login, registration, JWT handling).
-├── UserModule/ → User and role management (entities, repositories, services).
-├── CommonModule/ → CommonModule module (To Keep shared services and configs).
-└── Application.java → Main Spring Boot application class (Entry Point).
+src/main/java/com/bookstore/
+├── AuthModule/       # Authentication module (login, registration, JWT handling)
+├── UserModule/       # User and role management (entities, repositories, services)
+├── CommonModule/     # Shared services and configurations
+└── Application.java  # Main Spring Boot application class (entry point)
 
 The Spring Boot backend is structured into feature-based modules for authentication, user management, and shared service management. It uses Spring Security with JWT for stateless authentication and role-based access control. The layered architecture (Controller → Service → Repository) ensures clean separation of concerns and maintainable RESTful APIs for the Angular frontend.
