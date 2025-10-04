@@ -8,11 +8,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { MessageService } from '../../../shared/services/message.service';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
@@ -36,7 +37,8 @@ export class Register {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
@@ -105,6 +107,8 @@ export class Register {
 
         this.authService.register(user).subscribe({
           next: (response) => {
+            this.messageService.showSuccess('Successfully Registered!');
+
             setTimeout(() => {
               this.isLoading = false;
               console.log('Registration successful!');
@@ -116,11 +120,12 @@ export class Register {
           error: (error) => {
             this.isLoading = false;
             console.log('Registration failed!');
+            this.messageService.showError('Registration failed!. Please try again');
           },
         });
       } catch (error) {
         this.isLoading = false;
-        console.log('Registration failed!');
+        this.messageService.showError('Registration failed!. Please try again');
       }
     }
   }

@@ -13,8 +13,8 @@ export class FeaturedBooks {
       id: 1,
       title: 'The Art of War',
       author: 'Sun Tzu',
-      price: 12.99,
-      originalPrice: 18.99,
+      price: 1299,
+      originalPrice: 1899,
       rating: 4.8,
       image:
         'https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=400',
@@ -24,7 +24,7 @@ export class FeaturedBooks {
       id: 2,
       title: 'Digital Minimalism',
       author: 'Cal Newport',
-      price: 15.99,
+      price: 1599,
       rating: 4.6,
       image:
         'https://images.pexels.com/photos/1370295/pexels-photo-1370295.jpeg?auto=compress&cs=tinysrgb&w=400',
@@ -34,8 +34,8 @@ export class FeaturedBooks {
       id: 3,
       title: 'The Midnight Library',
       author: 'Matt Haig',
-      price: 13.99,
-      originalPrice: 19.99,
+      price: 1399,
+      originalPrice: 1999,
       rating: 4.9,
       image:
         'https://images.pexels.com/photos/1370298/pexels-photo-1370298.jpeg?auto=compress&cs=tinysrgb&w=400',
@@ -45,10 +45,10 @@ export class FeaturedBooks {
       id: 4,
       title: 'Atomic Habits',
       author: 'James Clear',
-      price: 16.99,
+      price: 1699,
       rating: 4.7,
       image:
-        'https://images.pexels.com/photos/1370300/pexels-photo-1370300.jpeg?auto=compress&cs=tinysrgb&w=400',
+        'https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=400',
       category: 'Self-Help',
     },
   ];

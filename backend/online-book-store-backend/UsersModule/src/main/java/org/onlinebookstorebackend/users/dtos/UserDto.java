@@ -1,9 +1,11 @@
-package org.onlinebookstorebackend.auth.dtos;
+package org.onlinebookstorebackend.users.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 
-public class SignUpDto {
+@Builder
+public class UserDto {
     private Integer id;
     @NotBlank(message = "Firstname is required")
     private String firstName;
@@ -16,17 +18,19 @@ public class SignUpDto {
     private String email;
     @NotBlank(message = "Password is required")
     private String password;
+    private String token;
 
-    public SignUpDto() {
+    public UserDto() {
     }
 
-    public SignUpDto(Integer id, String firstName, String lastName, String username, String email, String password) {
+    public UserDto(Integer id, String firstName, String lastName, String username, String email, String password, String token) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.token = token;
     }
 
     public Integer getId() {
@@ -75,5 +79,13 @@ public class SignUpDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="login-form">
       <div class="input-group">
         <label for="username" class="input-label">Ninja Username</label>
         <div class="input-wrapper">
@@ -22,17 +22,25 @@
             type="text"
             id="username"
             name="username"
-            [(ngModel)]="username"
+            formControlName="login"
             (input)="clearError('username')"
-            [class.error]="errors.username"
+            [class.error]="errors.login"
             class="form-input"
             placeholder="Enter your ninja name"
-            autocomplete="username"
+            autocomplete="login"
           />
           <div class="input-icon">👤</div>
         </div>
-        <div class="error-message" *ngIf="errors.username">
-          {{ errors.username }}
+        <div
+          class="error-message"
+          *ngIf="
+            (formControl['login'].touched || submitted) &&
+            formControl['login'].errors &&
+            formControl['login'].errors['required']
+          "
+        >
+          <!-- {{ errors.login }} -->
+          User name is requred
         </div>
       </div>
 
@@ -43,7 +51,7 @@
             type="password"
             id="password"
             name="password"
-            [(ngModel)]="password"
+            formControlName="password"
             (input)="clearError('password')"
             [class.error]="errors.password"
             class="form-input"
@@ -52,8 +60,16 @@
           />
           <div class="input-icon">🗝️</div>
         </div>
-        <div class="error-message" *ngIf="errors.password">
-          {{ errors.password }}
+        <div
+          class="error-message"
+          *ngIf="
+            (formControl['password'].touched || submitted) &&
+            formControl['password'].errors &&
+            formControl['password'].errors['required']
+          "
+        >
+          <!-- {{ errors.password }} -->
+          Password is required
         </div>
       </div>
 
@@ -65,7 +81,10 @@
         </span>
       </button>
     </form>
-
+    <span
+      >Not a member of hidden leaf?
+      <a [routerLink]="['/authentication/register']"> Create an account</a>
+    </span>
     <div class="footer">
       <p class="footer-text">
         "Those who break the rules are scum, but those who abandon their friends are worse than

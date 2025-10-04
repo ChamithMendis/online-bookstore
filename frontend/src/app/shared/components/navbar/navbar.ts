@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class Navbar {
   @Output() sidebarToggle = new EventEmitter<void>();
 
+  constructor(private router: Router) {}
+
   toggleSidebar() {
     this.sidebarToggle.emit();
+  }
+
+  onTitleClick() {
+    this.router.navigate(['/']);
   }
 }

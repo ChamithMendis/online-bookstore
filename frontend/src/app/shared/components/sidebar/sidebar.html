@@ -7,12 +7,26 @@
     </div>
 
     <nav class="sidebar-nav">
-      <a [routerLink]="'/'" class="nav-item active">
+      <a
+        [routerLink]="'/welcome-page'"
+        [ngClass]="{
+          'nav-item': true,
+          active: activeItem === 'welcome'
+        }"
+        (click)="onSidebarItemClicked('welcome')"
+      >
         <span class="nav-icon">🙏</span>
         <span class="nav-text">Welcome</span>
       </a>
 
-      <a [routerLink]="'/all-books'" class="nav-item">
+      <a
+        [routerLink]="'/all-books'"
+        [ngClass]="{
+          'nav-item': true,
+          active: activeItem === 'allbooks'
+        }"
+        (click)="onSidebarItemClicked('allbooks')"
+      >
         <span class="nav-icon">🏠</span>
         <span class="nav-text">All Books</span>
         <span class="nav-count">{{ totalBooks }}</span>
@@ -21,7 +35,6 @@
       <div class="nav-section">
         <h4 class="section-title">Manga & Comics</h4>
         <a
-          href="#"
           class="nav-item"
           *ngFor="let category of mangaCategories"
           (click)="selectCategory(category.name)"
@@ -35,7 +48,6 @@
       <div class="nav-section">
         <h4 class="section-title">Light Novels</h4>
         <a
-          href="#"
           class="nav-item"
           *ngFor="let category of novelCategories"
           (click)="selectCategory(category.name)"
@@ -49,7 +61,6 @@
       <div class="nav-section">
         <h4 class="section-title">Merchandise</h4>
         <a
-          href="#"
           class="nav-item"
           *ngFor="let category of merchCategories"
           (click)="selectCategory(category.name)"

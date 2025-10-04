@@ -24,9 +24,9 @@
             <span class="rating-text">({{ book.rating }})</span>
           </div>
           <div class="book-price">
-            <span class="current-price">\${{ book.price }}</span>
+            <span class="current-price">\Rs {{ book.price }}</span>
             <span *ngIf="book.originalPrice" class="original-price"
-              >\${{ book.originalPrice }}</span
+              >\Rs {{ book.originalPrice }}</span
             >
           </div>
         </div>

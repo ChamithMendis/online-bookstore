@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { FrontPage } from './front-page/front-page';
 import { MainLayout } from './layout/main-layout/main-layout';
+import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-  // [TODO: To be added after auth implementation completes]
   {
     path: '',
     component: FrontPage,
@@ -14,8 +14,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    // component: MainLayout,
-    // canActivate: [AuthGaurd], // [TODO: To be added after auth implementation completes]
+    canActivate: [AuthGuard],
     loadChildren: () => import('./layout/main-layout.routes').then((m) => m.MAIN_LAYOUT_ROUTES),
   },
   { path: '**', redirectTo: '' },
