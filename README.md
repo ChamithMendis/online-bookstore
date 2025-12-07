@@ -1,7 +1,7 @@
 # ☁️ Online Bookstore using Angular + Spring Boot + MYSQL + AWS
 
 This full-stack bookstore app dashboard uses AWS EC2, RDS for hosting, database. It demonstrates deployment and configuration of a production-ready cloud-native system.
-**Click on website images folder within the repository to see the UI images**
+**Click on website-images folder within the repository to see the UI images**
 🚀 Hosting Architecture on AWS
 
 - Angular frontend hosted on EC2
